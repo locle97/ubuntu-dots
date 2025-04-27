@@ -1,3 +1,5 @@
+sudo add-apt-repository ppa:dotnet/backports
+
 sudo apt install -y zlib1g
 
 sudo apt-get update && \
