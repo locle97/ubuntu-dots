@@ -18,6 +18,9 @@ gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Shift>F11']
 gsettings set org.gnome.mutter dynamic-workspaces false
 gsettings set org.gnome.desktop.wm.preferences num-workspaces 6
 
+# Turn off message tray hotkey
+gsettings set org.gnome.shell.keybindings toggle-message-tray []
+
 # Loop over workspaces 1 through 6
 for i in {1..9}; do
   echo "Configuring workspace $i..."
