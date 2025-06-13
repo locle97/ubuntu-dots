@@ -1,3 +1,4 @@
+#!/bin/bash
 # Alt+F4 is very cumbersome
 gsettings set org.gnome.desktop.wm.keybindings close "['<Super>w']"
 
@@ -17,24 +18,26 @@ gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Shift>F11']
 gsettings set org.gnome.mutter dynamic-workspaces false
 gsettings set org.gnome.desktop.wm.preferences num-workspaces 6
 
-# Use alt for pinned apps
-gsettings set org.gnome.shell.keybindings switch-to-application-1 "['<Alt>1']"
-gsettings set org.gnome.shell.keybindings switch-to-application-2 "['<Alt>2']"
-gsettings set org.gnome.shell.keybindings switch-to-application-3 "['<Alt>3']"
-gsettings set org.gnome.shell.keybindings switch-to-application-4 "['<Alt>4']"
-gsettings set org.gnome.shell.keybindings switch-to-application-5 "['<Alt>5']"
-gsettings set org.gnome.shell.keybindings switch-to-application-6 "['<Alt>6']"
-gsettings set org.gnome.shell.keybindings switch-to-application-7 "['<Alt>7']"
-gsettings set org.gnome.shell.keybindings switch-to-application-8 "['<Alt>8']"
-gsettings set org.gnome.shell.keybindings switch-to-application-9 "['<Alt>9']"
+# Loop over workspaces 1 through 6
+for i in {1..9}; do
+  echo "Configuring workspace $i..."
 
-# Use super for workspaces
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Super>1']"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-2 "['<Super>2']"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-3 "['<Super>3']"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4 "['<Super>4']"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Super>5']"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 "['<Super>6']"
+  # Clear conflicting GNOME Shell app hotkeys
+  gsettings set org.gnome.shell.keybindings switch-to-application-$i "[]"
+
+  # Clear Dash-to-Dock hotkeys
+  gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-$i "[]"
+  gsettings set org.gnome.shell.extensions.dash-to-dock app-ctrl-hotkey-$i "[]"
+  gsettings set org.gnome.shell.extensions.dash-to-dock app-shift-hotkey-$i "[]"
+
+  # Clear Space Bar extension shortcut
+  gsettings set org.gnome.shell.extensions.space-bar.shortcuts activate-${i}-key "[]"
+
+  # Assign Super and Alt workspace switching keys
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-$i "['<Super>$i', '<Alt>$i']"
+done
+
+echo "✅ Workspace keybindings (1–6) configured successfully."
 
 # Reserve slots for custom keybindings
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/']"
