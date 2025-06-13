@@ -9,3 +9,13 @@ gsettings set org.gnome.desktop.calendar show-weekdate true
 
 # Disable eoverlay-key
 gsettings set org.gnome.mutter overlay-key ''
+
+# Disable event-sounds
+gsettings set org.gnome.desktop.sound event-sounds false
+
+# Disable startup-sounds
+gsettings set org.gnome.desktop.session idle-delay 0
+
+# Seting repeat key
+gsettings set org.gnome.desktop.peripherals.keyboard delay 250
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 25
