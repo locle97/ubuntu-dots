@@ -16,7 +16,8 @@ gext install just-perfection-desktop@just-perfection
 gext install blur-my-shell@aunetx
 gext install space-bar@luchrioh
 gext install undecorate@sun.wxg@gmail.com
-gext install tophat@fflewddur.github.io
+# gext install tophat@fflewddur.github.io - replace by Vitals
+gext install Vitals@CoreCoding.com
 gext install AlphabeticalAppGrid@stuarthayhurst
 gext install forge@jmmaranan.com
 
